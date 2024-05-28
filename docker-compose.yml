@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  nginx-stack:
+    image: nginx:latest
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - shared-logs:/var/log/nginx/
+    networks:
+      - net-stack
+
+  app-stack:
+    build: ./app/.
+    volumes:
+      - shared-logs:/logs
+    restart: always
+    networks:
+      - net-stack
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.13.4
+    user: root
+    volumes:
+      - shared-logs:/logs
+      - ./beats/filebeat.yml:/usr/share/filebeat/filebeat.yml
+    restart: on-failure
+    depends_on:
+      - app-stack
+    entrypoint: ["/bin/sh", "-c", "chown root:root /usr/share/filebeat/filebeat.yml && chmod 600 /usr/share/filebeat/filebeat.yml && filebeat -e -c /usr/share/filebeat/filebeat.yml"]
+    networks:
+      - net-stack
+
+volumes:
+  shared-logs:
+
+networks:
+  net-stack:
+    driver: bridge
