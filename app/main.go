@@ -10,8 +10,8 @@ import (
 
 var connEs *elasticsearch.Client
 var cfgEs = elasticsearch.Config{
-	CloudID: "da2790b693d04a789afea747756a8834:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJDgwY2MzMjIxZjkzYTQ0ZDJiZjk5ZWQyYmU5ODM3ZmM1JGQ4ZjcxZDVlZmQ0MDRlNzU5ZDlmMjczYzIxMmJiYjgw",
-	APIKey:  "a19PU3ZJOEIyaklzV3JCRlF3OHY6QmFSZWM5ajZTbWlucllWSmhXVnBuZw==",
+	CloudID: "",
+	APIKey:  "",
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {

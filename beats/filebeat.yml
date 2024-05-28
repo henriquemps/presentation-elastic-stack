@@ -14,9 +14,9 @@ filebeat.modules:
       var.paths: [ "/logs/error.log" ]
 
 setup.kibana:
-  host: "https://d8f71d5efd404e759d9f273c212bbb80.us-central1.gcp.cloud.es.io:9243"
+  host: ""
 
 output.elasticsearch:
-  hosts: 'https://80cc3221f93a44d2bf99ed2be9837fc5.us-central1.gcp.cloud.es.io:443'
-  username: 'filebeat'
-  password: '123123123'
+  hosts: ""
+  username: ""
+  password: ""
